@@ -4,6 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Assert;
 import pages.Meristation.GamePage;
 import pages.Meristation.HomePage;
 import pages.Meristation.TopPage;
@@ -20,33 +21,38 @@ public class BattlefieldChinaSteps {
         home.navigate_Top();
     }
 
-    @When("^I select 'PlayStation 4' in platform dropdown$")
-    public void filterGamesListPlatform (){
-        top.selectPlatformOption("PlayStation 4");
-    }
-    @And("^I select 'Action' in genre dropdown$")
-    public void filterGamesListGenre(){
-        top.selectGenreOption("Acción");
+    @When("^I select \"(.*)\" in platform dropdown$")
+    public void filterGamesListPlatform (String platformOpt){
+
+        top.selectPlatformOption(platformOpt);
     }
 
-    @And("^I select '2013' in year dropdown$")
-    public void filterGamesListYear(){
-        top.selectYearOption("2013");
-    }
-    @And("^I click on the 'Battlefield 4: China Rising' game$")
-    public void navigateToBattlefieldGame(){
-        top.clickBattlefieldGame();
+    @And("^I select \"(.*)\" in genre dropdown$")
+    public void filterGamesListGenre(String genreOpt){
+        top.selectGenreOption(genreOpt);
     }
 
-    @And("^I select 'PS3' in ficha tecnica$")
-    public void selectPS3Tab(){
-        game.selectPs3("PS3");
+    @And("^I select \"(.*)\" in year dropdown$")
+    public void filterGamesListYear(String yearOpt){
+
+        top.selectYearOption(yearOpt);
     }
 
-    @Then("^I verify that 'Voces' label and 'Español' text are displayed$")
-    public void verifyElementsPresent(){
-        game.verify_voicesLabel();
-        game.verify_voicesValue();
+    @And("^I click on the \"(.*)\" game$")
+    public void navigateToBattlefieldGame(String gameLink){
+        top.clickBattlefieldGame(gameLink);
+    }
+
+    @And("^I select \"(.*)\" in ficha tecnica$")
+    public void selectTabFromDataSheet(String option){
+
+        game.selectOptionFromData(option);
+    }
+
+    @Then("^I verify that \"(.*)\" label and \"(.*)\" text are displayed$")
+    public void verifyElementsPresent(String label , String text){
+        Assert.assertTrue(game.verifyLabelDisplayed(label));
+        Assert.assertTrue(game.verifyValueIsDisplayed(text));
     }
 
     @When("^I click on 'Developer' link$")
@@ -54,9 +60,9 @@ public class BattlefieldChinaSteps {
         game.navigateToDeveloper();
     }
 
-    @Then("^I verify that the correct current url is displayed$")
-    public void verifyCurrentURL(){
-        game.verifyDeveloperPageUrl();
+    @Then("^I verify that the correct url \"(.*)\" is displayed$")
+    public void verifyCurrentURL(String url){
+        game.verifyDeveloperPageUrl(url);
     }
 
 

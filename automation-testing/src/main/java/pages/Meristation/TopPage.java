@@ -57,8 +57,17 @@ public class TopPage extends BaseTest{
 		
 	}
 	
-	public void clickBattlefieldGame() {
-		driver.findElement(game).click();
+	public void clickBattlefieldGame(String game) {
+		List <WebElement> options = driver.findElements(gameLinks);
+
+		for (WebElement option : options)
+		{
+			if (option.getText().equals(game))
+			{
+				option.click();
+				break;
+			}
+		}
 		
 	}
 	
@@ -68,6 +77,6 @@ public class TopPage extends BaseTest{
 		By platform_drop = By.cssSelector("div:nth-child(1) > div > div > div.form-desp-current > span.form-value");
 		By genre_drop = By.cssSelector("div:nth-child(2) > div > div > div.form-desp-current > span.form-value");
 		By year_drop = By.cssSelector("div:nth-child(3) > div > div > div.form-desp-current > span.form-value");
-		By game = By.cssSelector("a[title='Toda la información de Battlefield 4: China Rising']");
+		By gameLinks = By.cssSelector("div.ga-inf > h2 > a");
 	
 }
