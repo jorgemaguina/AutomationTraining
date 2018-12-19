@@ -2,6 +2,7 @@ package pages.Meristation;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -10,7 +11,7 @@ import stepDefinitions.BaseTest;
 public class GamePage extends BaseTest {
 
 	
-	public void selectPs3(String str) {
+	public void selectOptionFromData(String str) {
 		List <WebElement> options = driver.findElement(releases).findElements(By.tagName("li"));
 		  
 		  for (WebElement option : options)
@@ -24,47 +25,56 @@ public class GamePage extends BaseTest {
 				
 	}
 	
-	public boolean verify_voicesLabel(){
-		
-		
-		if (driver.findElement(voices_lb).isDisplayed() == true){
-			return true;
+	public boolean verifyLabelDisplayed(String label){
+
+		List <WebElement> listLabels = driver.findElements(labels);
+
+		for (WebElement option : listLabels)
+		{
+			if (option.isDisplayed() && option.getText().equals(label))
+			{
+				return true;
+
+			}
+
 		}
-		else{
-			return false;
-		}
-			
+		return false;
 	}
 	
-	public boolean verify_voicesValue(){
-		
-		
-		if (driver.findElement(voices_val).isDisplayed() == true){
-			return true;
+	public boolean verifyValueIsDisplayed(String val){
+
+		List <WebElement> listValues = driver.findElements(values);
+
+		for (WebElement option : listValues)
+		{
+			if (option.isDisplayed() && option.getText().equals(val))
+			{
+				return true;
+
+			}
+
 		}
-		else{
-			return false;
-		}
-			
+		return false;
+	}
+
+	public void verifyValues(String lbl, String val){
+		Assert.assertTrue(verifyLabelDisplayed(lbl));
+		Assert.assertTrue(verifyValueIsDisplayed(val));
 	}
 
 	public void navigateToDeveloper(){
 		driver.findElement(game).click();
 	}
 	
-	public boolean verifyDeveloperPageUrl(){
+	public void verifyDeveloperPageUrl(String urlDev){
 
-		if (driver.getCurrentUrl().equalsIgnoreCase("https://as.com/meristation/empresas/ea_dice/") ){
-			return true;
-		}
-		else{
-			return false;
-		}
+        Assert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase(urlDev));
+
 	}
 	
 	//Locators
 	By releases = By.cssSelector("#tabs-releases > ul");
-	By voices_lb = By.cssSelector("div.tab-ct.sel > div.mod-li > ul > li:nth-child(1) > span.lbl");
-	By voices_val = By.cssSelector("div.tab-ct.sel > div.mod-li > ul > li:nth-child(1) > span.val");
+	By labels = By.cssSelector("div.tab-ct.sel > div.mod-li > ul > li > span.lbl");
+	By values = By.cssSelector("div.tab-ct.sel > div.mod-li > ul > li > span.val");
 	By game = By.cssSelector("a[title='EA DICE, empresa desarrolladora de Battlefield 4: China Rising']");
 }

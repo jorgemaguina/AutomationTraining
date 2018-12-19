@@ -15,37 +15,35 @@ public class ConkersBadFurDaySteps {
     ConkersBadFurDay game = new ConkersBadFurDay();
 
     @Given("^I navigate to MAS > NINTENDO 64 page$")
-    public void goToNintendo64Platform() throws Throwable {
+    public void goToNintendo64Platform(){
         home.accept_cookies();
         home.navToNintendo();
 
     }
 
-    @When("^I click on 'Conker's Bad Fur Day' in the 'TOP 10' section$")
-    public void clickConkersBadFurDayGame() {
+    @When("^I click on \"(.*)\" in the TOP 10 section$")
+    public void clickTopTenGame(String game) {
 
-        nintendo.navigateToConkersBadFur();
+        nintendo.navigateToTopGame(game);
     }
 
-    @And("^I select 'Trucos' tab$")
-    public void selectTabTrucos() {
+    @And("^I select \"(.*)\" tab$")
+    public void selectTab(String tab) {
 
-        game.selectTrucosTab();
+        game.selectTabFromGame(tab);
     }
 
-    @And("^I click on 'Conker's Bad Fur Day' title$")
-    public void navigateToGameTrucos() {
+    @And("^I click on the link displayed$")
+    public void navigateToGameTitle() {
 
-        game.navigateTrucosPage();
-
-    }
-
-    @Then("^I verify that 'Conker's Bad Fur Day' title is displayed$")
-    public void verifyTitleInTrucos() {
-
-        game.verifyTrucosTitle();
+        game.navigateTabPageLink();
 
     }
 
+    @Then("^I verify that \"(.*)\" title is displayed$")
+    public void verifyPageTitleIsDisplayed(String titlePage) {
 
+        game.verifyPageTitle(titlePage);
+
+    }
 }

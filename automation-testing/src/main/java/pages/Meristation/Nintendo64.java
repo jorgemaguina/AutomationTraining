@@ -4,14 +4,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import stepDefinitions.BaseTest;
 
+import java.util.List;
+
 public class Nintendo64 extends BaseTest {
 
-    public void navigateToConkersBadFur(){
+    public void navigateToTopGame(String topGame){
 
-        driver.findElement(game_link).click();
+        WebElement game_list = driver.findElement(top_games);
+        List<WebElement> options = game_list.findElements(By.tagName("a"));
+
+        for (WebElement option : options)
+        {
+            if (option.getText().equals(topGame))
+            {
+                option.click();
+                break;
+            }
+        }
     }
 
-
     //Locators
-    By game_link = By.cssSelector("ol > li:nth-child(1) > a");
+    By top_games = By.cssSelector("div.li-flex-wr > ol.li-num");
 }

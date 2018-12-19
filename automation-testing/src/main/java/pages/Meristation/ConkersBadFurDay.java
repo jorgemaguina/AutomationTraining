@@ -5,26 +5,39 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import stepDefinitions.BaseTest;
 
+import java.util.List;
+
 public class ConkersBadFurDay extends BaseTest {
 
-    public void selectTrucosTab(){
-        driver.findElement(trucos_tab).click();
+    public void selectTabFromGame(String tabName){
+        WebElement tabs = driver.findElement(tabList);
+        List<WebElement> options = tabs.findElements(By.tagName("li"));
+
+        for (WebElement option : options)
+        {
+            if (option.getText().equals(tabName))
+            {
+                option.click();
+                break;
+            }
+        }
+
     }
 
-    public void navigateTrucosPage(){
-        driver.findElement(trucos_page).click();
+    public void navigateTabPageLink(){
+        driver.findElement(tab_pageLink).click();
     }
 
-    public void verifyTrucosTitle(){
+    public void verifyPageTitle(String title){
 
         String actual_title = driver.findElement(trucos_title).getText();
-        Assert.assertTrue(actual_title.equalsIgnoreCase("Conker's Bad Fur Day"));
+        Assert.assertTrue(actual_title.equalsIgnoreCase(title));
     }
 
 
     //Locators
-    By trucos_tab = By.cssSelector("ul.j-sb > li:nth-child(6) > a");
-    By trucos_page = By.cssSelector("h2 > a");
+    By tabList = By.cssSelector("ul.j-sb");
+    By tab_pageLink = By.cssSelector("h2 > a");
     By trucos_title = By.cssSelector("div > h1");
 
 }

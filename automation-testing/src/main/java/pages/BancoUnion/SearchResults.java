@@ -11,14 +11,12 @@ import stepDefinitions.BaseTest;
 public class SearchResults extends BaseTest {
 	
 
-	public void navToSearchResults() {
-
-		;
+	public void navToSearchResults(String searchRes) {
 
 		List<WebElement> linkOccurence = driver.findElement(table).findElements(By.tagName("a"));
 	    for(WebElement ele : linkOccurence){
 
-	        if (ele.getText().equalsIgnoreCase("Modelos de contrato")) {
+	        if (ele.getText().equalsIgnoreCase(searchRes)) {
 	        	ele.click();
 	        	break;
 	        }

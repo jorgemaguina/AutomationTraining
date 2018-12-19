@@ -8,8 +8,8 @@ import stepDefinitions.BaseTest;
 public class SearchCredits extends BaseTest {
 	
 	
-	public void searchText () {
-		driver.findElement(search_input).sendKeys("credito");
+	public void searchText (String text) {
+		driver.findElement(search_input).sendKeys(text);
 		driver.findElement(search_button).click();
 		
 	}
