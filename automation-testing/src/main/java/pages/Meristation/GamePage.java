@@ -47,7 +47,6 @@ public class GamePage extends BaseTest {
 
 		for (WebElement option : listValues)
 		{
-			String text = option.getText();
 			if (option.isDisplayed() && option.getText().equals(val))
 			{
 				return true;
@@ -56,6 +55,11 @@ public class GamePage extends BaseTest {
 
 		}
 		return false;
+	}
+
+	public void verifyValues(String lbl, String val){
+		Assert.assertTrue(verifyLabelDisplayed(lbl));
+		Assert.assertTrue(verifyValueIsDisplayed(val));
 	}
 
 	public void navigateToDeveloper(){

@@ -51,8 +51,7 @@ public class BattlefieldChinaSteps {
 
     @Then("^I verify that \"(.*)\" label and \"(.*)\" text are displayed$")
     public void verifyElementsPresent(String label , String text){
-        Assert.assertTrue(game.verifyLabelDisplayed(label));
-        Assert.assertTrue(game.verifyValueIsDisplayed(text));
+        game.verifyValues(label, text);
     }
 
     @When("^I click on 'Developer' link$")
