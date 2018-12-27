@@ -9,7 +9,7 @@ public class FirefoxDriverManager implements DriverManager {
 
     public WebDriver getDriver() {
 
-        System.setProperty("webdriver.gecko.driver","C:\\SeleniumDrivers\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"/src//drivers//geckodriver.exe");
         this.driver = new FirefoxDriver();
         return this.driver;
     }

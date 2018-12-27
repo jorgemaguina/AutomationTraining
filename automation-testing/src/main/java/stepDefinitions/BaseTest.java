@@ -20,7 +20,7 @@ public class BaseTest {
 	public  void driverSetup(){
 
 		prop.readPropertiesFile();
-		this.driver = factory.getDriverType(prop.getPropertyValue("ie"));
+		this.driver = factory.getDriverType(prop.getPropertyValue("browser"));
 
 	}
 	

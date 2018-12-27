@@ -10,7 +10,7 @@ public class InternetExplorerDriverManager {
 
     public WebDriver getDriver() {
 
-        System.setProperty("webdriver.ie.driver","C:\\SeleniumDrivers\\IEDriverServer.exe");
+        System.setProperty("webdriver.ie.driver",System.getProperty("user.dir")+"/src//drivers//IEDriverServer.exe");
         this.driver = new InternetExplorerDriver();
         return this.driver;
     }

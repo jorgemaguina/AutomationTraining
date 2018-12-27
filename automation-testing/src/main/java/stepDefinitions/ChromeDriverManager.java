@@ -10,7 +10,7 @@ public class ChromeDriverManager implements DriverManager {
 
     public WebDriver getDriver() {
 
-        System.setProperty("webdriver.chrome.driver","C:\\SeleniumDrivers\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"/src//drivers//chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         return driver;
