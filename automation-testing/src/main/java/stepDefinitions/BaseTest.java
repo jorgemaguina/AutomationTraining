@@ -3,27 +3,24 @@ package stepDefinitions;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class BaseTest {
 
+	private DriverFactory factory = new DriverFactory();
 	public static WebDriver driver;
+	private ReadProperties prop = new ReadProperties();
+
 	public WebDriverWait wait;
 	public Long timeOut;
-	
+
 	
 	@Before
 	public  void driverSetup(){
-		
-		ReadProperties prop = new ReadProperties();
+
 		prop.readPropertiesFile();
-		System.setProperty(prop.getPropertyValue("ff_driver"),prop.getPropertyValue("driver_location"));
-		driver = new FirefoxDriver();
-		driver.get(prop.getPropertyValue("url"));
-		timeOut= prop.getPropertyTimeout("timeout");
-		wait = new WebDriverWait(driver,30);
+		this.driver = factory.getDriverType(prop.getPropertyValue("ie"));
 
 	}
 	
@@ -32,6 +29,9 @@ public class BaseTest {
 
 		driver.quit();
 	}
+
+
+
 
 
 }

@@ -1,7 +1,8 @@
 Feature: Games
 
   Scenario: Verify the 'Conker's Bad Fur Day' page title
-    Given I navigate to MAS > NINTENDO 64 page
+    Given I navigate to Meristation page
+    When I navigate to MAS > NINTENDO 64 page
     When I click on "Conker's Bad Fur Day" in the TOP 10 section
     And I select "Trucos" tab
     And I click on the link displayed
@@ -9,7 +10,8 @@ Feature: Games
 
 
 Scenario: Verify the URL of the 'Developer' link is correct
-  Given I navigate to TOP page
+  Given I navigate to Meristation page
+  When I navigate to TOP page
   When I select "PlayStation 4" in platform dropdown
   And I select "Acción" in genre dropdown
   And I select "2013" in year dropdown
