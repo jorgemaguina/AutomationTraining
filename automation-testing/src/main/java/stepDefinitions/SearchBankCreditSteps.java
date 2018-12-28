@@ -17,7 +17,12 @@ public class SearchBankCreditSteps {
     private SearchResults results = new SearchResults();
     private ContractModels table = new ContractModels();
 
-    @Given("^I navigate to 'Mapa del Sitio > Buscar' page$")
+    @Given("^I navigate to Bank page$")
+    public void navigateToBankUrl(){
+        home.getBankUrl();
+    }
+
+    @When("^I navigate to 'Mapa del Sitio > Buscar' page$")
     public void navigateToSearch(){
         home.navigateToBuscar();
     }

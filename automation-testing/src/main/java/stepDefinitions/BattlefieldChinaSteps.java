@@ -15,7 +15,12 @@ public class BattlefieldChinaSteps {
     TopPage top = new TopPage();
     GamePage game = new GamePage();
 
-    @Given("^I navigate to TOP page$")
+    @Given("^I navigate to Meristation page$")
+    public void navigateToGamesPage(){
+        home.getGameUrl();
+    }
+
+    @When("^I navigate to TOP page$")
     public void navigateToTopPage(){
         home.accept_cookies();
         home.navigate_Top();

@@ -10,11 +10,11 @@ import pages.Meristation.Nintendo64;
 
 public class ConkersBadFurDaySteps {
 
-    HomePage home= new HomePage();
-    Nintendo64 nintendo = new Nintendo64();
-    ConkersBadFurDay game = new ConkersBadFurDay();
+    private HomePage home= new HomePage();
+    private Nintendo64 nintendo = new Nintendo64();
+    private ConkersBadFurDay game = new ConkersBadFurDay();
 
-    @Given("^I navigate to MAS > NINTENDO 64 page$")
+    @When("^I navigate to MAS > NINTENDO 64 page$")
     public void goToNintendo64Platform(){
         home.accept_cookies();
         home.navToNintendo();
